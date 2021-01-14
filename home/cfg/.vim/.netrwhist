@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='D:/Downloads/sdk100_v1_win/Adobe/Acrobat 10 SDK/Version 1/PluginSupport/Samples/BasicPlugin'
+let g:netrw_dirhist_2='D:/Downloads/sdk100_v1_win/Adobe/Acrobat 10 SDK/Version 1/PluginSupport/Samples'
+let g:netrw_dirhist_3='D:/Downloads/sdk100_v1_win/Adobe/Acrobat 10 SDK/Version 1/PluginSupport'
+let g:netrw_dirhist_4='D:/Downloads/sdk100_v1_win/Adobe/Acrobat 10 SDK/Version 1/PluginSupport/Headers'
+let g:netrw_dirhist_5='D:/Downloads/sdk100_v1_win/Adobe/Acrobat 10 SDK/Version 1/PluginSupport/Headers/API'
+let g:netrw_dirhist_6='D:/Downloads/sdk100_v1_win/Adobe/Acrobat 10 SDK/Version 1/PluginSupport/Headers'
+let g:netrw_dirhist_7='D:/Downloads/sdk100_v1_win/Adobe/Acrobat 10 SDK/Version 1/PluginSupport/Headers/SDK'

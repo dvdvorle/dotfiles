@@ -1,0 +1,29 @@
+[https]
+    proxy = http://proxy04.wigo4it.local:8080/
+
+[user]
+	email = Dominique.van.de.Vorle@Wigo4it.nl
+	name = Dominique van de Vorle
+
+[alias]
+    st = status
+    co = checkout
+    cam = commit -a -m
+    cleanup = clean -xe **/appsettings.*.json
+    fix = !git commit -a --amend --no-edit && git push --force-with-lease
+
+[merge]
+    tool = kdiff3
+
+#[diff]
+    #tool = kdiff3
+
+[mergetool "kdiff3"]
+    path = "C:/Program Files/KDiff3/kdiff3.exe"
+
+#[difftool "kdiff3"]
+    #path = "C:/Program Files/KDiff3/kdiff3.exe"
+[fetch]
+	prune = true
+[http]
+	sslBackend = schannel
