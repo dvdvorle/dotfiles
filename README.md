@@ -17,6 +17,8 @@ Sla beide exports op buiten de VDI, bijv. je H:\ schijf
 
 ## Op de nieuwe VDI
 
+Edit in `home\.gitconfig` de user.email en user.name
+
 Open powershell als Administrator, navigeer naar de huidige map en draai de volgende commando's
 
 	Set-ExecutionPolicy RemoteSigned
