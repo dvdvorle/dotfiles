@@ -24,12 +24,6 @@ echo "Applying personal customisation"
 cp $location\home\* $env:userprofile\ -force -r
 git clone https://github.com/dvdvorle/vimfiles.git $env:userprofile\.vim
 
-cp $location\ConEmu.xml C:\tools\cmder\vendor\conemu-maximus5\ConEmu.xml -Force
-
-echo "Patching the weird lambda thing in powershell in Cmder" 
-$file = "C:\tools\Cmder\vendor\profile.ps1"
-(cat $file -raw) -replace "λ","$([char]0x03bb)" | set-content -path $file -encoding unicode
-
 echo "Show taskbar buttons only on window it's open"
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
 
