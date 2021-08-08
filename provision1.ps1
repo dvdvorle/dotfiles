@@ -25,4 +25,6 @@ git clone https://github.com/dvdvorle/vimfiles.git $env:userprofile\.vim
 echo "Show taskbar buttons only on window it's open"
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
 
+Unblock-File $location\provision2.ps1
+new-itemproperty HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce MyKey -propertytype String -value "Powershell $location\provision2.ps1"
 Restart-Computer
