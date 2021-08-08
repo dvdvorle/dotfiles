@@ -11,6 +11,8 @@ choco install visualstudio2019enterprise --package-parameters="--config $locatio
 choco install $location\choco-packages.config -y
 
 echo "Installing module posh-git"
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module posh-git
 
 echo "Enabling Windows containers" 
