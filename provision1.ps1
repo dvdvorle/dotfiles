@@ -26,5 +26,5 @@ echo "Show taskbar buttons only on window it's open"
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
 
 Unblock-File $location\provision2.ps1
-new-itemproperty HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce MyKey -propertytype String -value "Powershell $location\provision2.ps1"
+New-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce MyKey -propertytype String -value "Powershell -NoExit $location\provision2.ps1"
 Restart-Computer
