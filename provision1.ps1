@@ -20,7 +20,6 @@ Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Conta
 
 echo "Applying personal customisation"
 cp $location\home\* $env:userprofile\ -force -r
-git clone https://github.com/dvdvorle/vimfiles.git $env:userprofile\.vim
 
 echo "Show taskbar buttons only on window it's open"
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2

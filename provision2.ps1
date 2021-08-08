@@ -1,4 +1,5 @@
-choco install choco install wsl-ubuntu-2004 -y
+git clone https://github.com/dvdvorle/vimfiles.git $env:userprofile\.vim --recurse-submodules
+choco install wsl-ubuntu-2004 -y
 
 echo "Remaining manual stuff:"
 echo "- install Oracle SQL Developer (login with Oracle account)"
