@@ -19,7 +19,7 @@ Sla beide exports op buiten de VDI, bijv. je H:\ schijf
 1. Edit in `home\.gitconfig` de user.email en user.name
 2. Open powershell als Administrator, navigeer naar de huidige map en draai de volgende commando's
    ```powershell
-   Set-ExecutionPolicy RemoteSigned
+   Set-ExecutionPolicy RemoteSigned -Force
    Unblock-File .\provision1.ps1
    .\provision1.ps1
    ```
