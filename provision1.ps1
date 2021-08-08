@@ -11,11 +11,7 @@ choco install visualstudio2019enterprise --package-parameters="--config $locatio
 choco install $location\choco-packages.config -y
 
 echo "Installing module posh-git"
-Install-Module posh-git -Confirm
-
-echo "Installing WSL2 - part 1"
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+Install-Module posh-git
 
 echo "Enabling Windows containers" 
 Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All -NoRestart
@@ -27,6 +23,4 @@ git clone https://github.com/dvdvorle/vimfiles.git $env:userprofile\.vim
 echo "Show taskbar buttons only on window it's open"
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
 
-echo "Remaining manual stuff:"
-echo "- WSL2 install needs reboot, then provision2.ps1"
-
+Restart-Computer
