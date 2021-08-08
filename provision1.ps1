@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 echo "Setting the TNS_ADMIN variable"
 [System.Environment]::SetEnvironmentVariable('TNS_ADMIN','V:\',[System.EnvironmentVariableTarget]::Machine)
 
@@ -20,6 +22,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Conta
 
 echo "Applying personal customisation"
 cp $location\home\* $env:userprofile\ -force -r
+git clone https://github.com/dvdvorle/vimfiles.git $env:userprofile\.vim
 
 cp $location\ConEmu.xml C:\tools\cmder\vendor\conemu-maximus5\ConEmu.xml -Force
 
