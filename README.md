@@ -30,5 +30,5 @@ Sla beide exports op buiten de VDI, bijv. je H:\ schijf
    ```bash
    cp provision.sh ~/provision.sh
    cd ~
-   sudo ./provision.sh
+   sudo -E ./provision.sh
    ```
