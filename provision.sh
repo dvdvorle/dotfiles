@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Remount disks to prevent
+# Remount disks to prevent https://askubuntu.com/questions/1115564/wsl-ubuntu-distro-how-to-solve-operation-not-permitted-on-cloning-repository
+# This is why this script needs to run from $HOME
 umount /mnt/c
 mount -t drvfs C: /mnt/c -o metadata
 
@@ -32,3 +33,6 @@ apt-get install -y gnupg software-properties-common curl
 curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 apt-get update && apt-get install terraform
+
+# Install kubectl
+az aks install-cli
