@@ -36,3 +36,6 @@ apt-get update && apt-get install terraform
 
 # Install kubectl
 az aks install-cli
+
+# Install dotnet
+apt-get install -y dotnet-sdk-3.1 dotnet-sdk-5.0
