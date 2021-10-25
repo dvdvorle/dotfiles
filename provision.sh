@@ -38,4 +38,8 @@ apt-get update && apt-get install terraform
 az aks install-cli
 
 # Install dotnet
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+
 apt-get install -y dotnet-sdk-3.1 dotnet-sdk-5.0
