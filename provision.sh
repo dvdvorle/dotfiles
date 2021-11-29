@@ -8,15 +8,8 @@ mount -t drvfs C: /mnt/c -o metadata
 umount /mnt/d
 mount -t drvfs D: /mnt/d -o metadata
 
-
-# Install Git Credential Manager Core
-curl -L https://github.com/microsoft/Git-Credential-Manager-Core/releases/download/v2.0.475/gcmcore-linux_amd64.2.0.475.64295.deb --output gcmcore-linux_amd64.deb
-dpkg -i gcmcore-linux_amd64.deb
-git-credential-manager-core configure
-
 # Configure GCM
-git config --global --replace-all credential.https://dev.azure.com.usehttppath true
-git config --global credential.credentialStore cache
+git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
 
 # Install Azure CLI
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash
