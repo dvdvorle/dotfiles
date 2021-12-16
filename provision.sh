@@ -9,7 +9,7 @@ umount /mnt/d
 mount -t drvfs D: /mnt/d -o metadata
 
 # Configure GCM
-git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
+git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe"
 
 # Install Azure CLI
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash
