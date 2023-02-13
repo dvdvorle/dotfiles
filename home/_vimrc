@@ -174,7 +174,7 @@
   nmap <leader>tb :term ++close "C:/Program Files/Git/bin/bash.exe"<CR>
   nmap <leader>tu :vert term ++close wsl -d Ubuntu-20.04<CR>
   nmap <leader>tc :term ++close cmd<CR>
-  nmap <leader>tp :term ++close cmd /c "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat" && powershell<CR>
+  nmap <leader>tp :term ++close cmd /c "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" && powershell<CR>
 
   tmap <C-V> <C-W>"+
   tmap <C-j> <C-W>j
@@ -184,7 +184,7 @@
 
   tmap <RightMouse> <C-W>"+
 
-  tnoremap kj <c-\><c-n>
+  tnoremap KJ <c-\><c-n>
   " https://github.com/onivim/oni/issues/2342
   tnoremap <s-space> <space>
 
@@ -207,6 +207,7 @@
 
   " Startify {
     let g:startify_bookmarks = [ 
+      \{ 's1': 'e:/src/'},
     \]
 
     let g:startify_files_number = 20
@@ -223,6 +224,17 @@
   "NETRW {
     let ghregex='\(^\|\s\s\)\zs\.\S\+'
     let g:netrw_list_hide=ghregex
+  " }
+
+  "easy align {
+    " Start interactive EasyAlign in visual mode (e.g. vipga)
+    xmap ga <Plug>(EasyAlign)
+
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ga <Plug>(EasyAlign)
+
+    " Format markdown table
+    au FileType markdown nmap <leader><bslash> gaip*<bar><CR>
   " }
 " }
 
