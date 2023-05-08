@@ -11,7 +11,7 @@
 
 " General {
   set background=dark                 " Assume a dark background
-  if !has('win32') && !has('win64')
+  if !has('win32') && !has('win64') && has($TERM)
       set term=$TERM                  " Make arrow and other keys work
   endif
 
@@ -124,10 +124,6 @@
   " Edit _vimrc configuration file
   nmap <leader>ev :e $MYVIMRC<CR>
 
-  " Wrapped lines goes down/up to next row, rather than next line in file.
-  nnoremap j gj
-  nnoremap k gk
-
   " Easily delete current buffer without closing the view
   nmap <silent> <leader>d :bp\|bd #<CR>
 
@@ -170,9 +166,10 @@
   nnoremap <leader>p :CtrlPBuffer<CR>
 
   " Several terminals
-  nmap <leader>b :term ++close wsl -d Ubuntu-20.04<CR>
+  let bash_term = !has('win32') && !has('win64') ? 'bash' : 'wsl -d Ubuntu-20.04'
+  execute 'nmap <leader>b :term ++close ' . bash_term . '<CR>'
   nmap <leader>tb :term ++close "C:/Program Files/Git/bin/bash.exe"<CR>
-  nmap <leader>tu :vert term ++close wsl -d Ubuntu-20.04<CR>
+  execute 'nmap <leader>tu :vert term ++close ' . bash_term . '<CR>'
   nmap <leader>tc :term ++close cmd<CR>
   nmap <leader>tp :term ++close cmd /c "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" && powershell<CR>
 
@@ -206,9 +203,15 @@
   " }
 
   " Startify {
-    let g:startify_bookmarks = [ 
-      \{ 's1': 'e:/src/'},
-    \]
+  
+    if !has('win32') && !has('win64') && has($TERM)
+      let g:startify_bookmarks = [ 
+        \{ 's1': 'e:/src/'},
+      \]
+    else
+      let g:startify_bookmarks = [ 
+      \]
+    endif
 
     let g:startify_files_number = 20
   " } 
