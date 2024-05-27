@@ -1,9 +1,6 @@
-[https]
-    proxy = http://proxy04.wigo4it.local:8080/
-
 [user]
-	email = Dominique.van.de.Vorle@Wigo4it.nl
 	name = Dominique van de Vorle
+  email = dvdvorle@gmail.com
 
 [alias]
     st = status
