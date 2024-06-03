@@ -105,6 +105,10 @@
 " }
 
 " Shell {
+  if executable('rg')
+    set grepprg=rg\ -H\ --no-heading\ --vimgrep
+    set grepformat=%f:%l:%c:%m
+  endif
 " }
 
 " Key (re)mappings {
@@ -123,6 +127,10 @@
 
   " Edit _vimrc configuration file
   nmap <leader>ev :e $MYVIMRC<CR>
+
+  " Wrapped lines goes down/up to next row, rather than next line in file.
+  nnoremap j gj
+  nnoremap k gk
 
   " Easily delete current buffer without closing the view
   nmap <silent> <leader>d :bp\|bd #<CR>
@@ -171,7 +179,7 @@
   nmap <leader>tb :term ++close "C:/Program Files/Git/bin/bash.exe"<CR>
   execute 'nmap <leader>tu :vert term ++close ' . bash_term . '<CR>'
   nmap <leader>tc :term ++close cmd<CR>
-  nmap <leader>tp :term ++close cmd /c "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" && powershell<CR>
+  nmap <leader>tp :term ++close cmd /c powershell<CR>
 
   tmap <C-V> <C-W>"+
   tmap <C-j> <C-W>j
@@ -198,12 +206,19 @@
   " }
 
   " Ctrl-P {
-    let g:ctrlp_max_files=0
     let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files -oc --exclude-standard']
+
+    if executable('rg')
+      " Use rg in CtrlP for listing files, respects .gitignore
+      let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+      let g:ctrlp_use_caching = 0
+    endif
+
+    let g:ctrlp_max_files=0
+    let g:ctrlp_clear_cache_on_exit = 1
   " }
 
   " Startify {
-  
     if !has('win32') && !has('win64') && has($TERM)
       let g:startify_bookmarks = [ 
         \{ 's1': 'e:/src/'},
