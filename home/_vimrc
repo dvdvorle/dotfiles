@@ -179,7 +179,7 @@
   nmap <leader>tb :term ++close "C:/Program Files/Git/bin/bash.exe"<CR>
   execute 'nmap <leader>tu :vert term ++close ' . bash_term . '<CR>'
   nmap <leader>tc :term ++close cmd<CR>
-  nmap <leader>tp :term ++close cmd /c powershell<CR>
+  nmap <leader>tp :term ++close powershell<CR>
 
   tmap <C-V> <C-W>"+
   tmap <C-j> <C-W>j
