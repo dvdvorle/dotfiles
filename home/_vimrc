@@ -36,6 +36,8 @@
   au! BufWritePost $MYVIMRC so $MYVIMRC           " immediately apply changes to _vimrc
   set clipboard=unnamed                           " Use OS clipboard
 
+  set includeexpr=substitute(v:fname,'\$PSScriptRoot','.','g') " Allow gf to work in pwsh scripts
+
   set backup 						                          " backups are nice, their location is set blow in InitializeDirectories()
   au BufWrite * silent! mkview                    " make vim save view (state) (folds, cursor, etc)
   au BufRead * silent! loadview                   " make vim load view (state) (folds, cursor, etc)
@@ -106,7 +108,7 @@
 
 " Shell {
   if executable('rg')
-    set grepprg=rg\ -H\ --no-heading\ --vimgrep
+    set grepprg=rg\ -H\ --no-heading\ --vimgrep\ --hidden
     set grepformat=%f:%l:%c:%m
   endif
 " }
@@ -179,7 +181,11 @@
   nmap <leader>tb :term ++close "C:/Program Files/Git/bin/bash.exe"<CR>
   execute 'nmap <leader>tu :vert term ++close ' . bash_term . '<CR>'
   nmap <leader>tc :term ++close cmd<CR>
-  nmap <leader>tp :term ++close powershell<CR>
+  nmap <leader>tp :term ++close pwsh<CR>
+  nmap <leader>u :w<CR>:term ++close pwsh -NoProfile -Command "cd ..; Invoke-Pester -Output Detailed; read-host"<CR>
+
+  "search repo
+  nmap <leader>f :silent lgrep<space>
 
   tmap <C-V> <C-W>"+
   tmap <C-j> <C-W>j
@@ -210,7 +216,7 @@
 
     if executable('rg')
       " Use rg in CtrlP for listing files, respects .gitignore
-      let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+      let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
       let g:ctrlp_use_caching = 0
     endif
 
