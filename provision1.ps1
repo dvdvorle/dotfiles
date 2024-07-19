@@ -24,6 +24,9 @@ cp $location\home\* $env:userprofile\ -force -r
 echo "Show taskbar buttons only on window it's open"
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
 
+echo "Remove taskbar Widget on W11"
+Get-AppxPackage *WebExperience* | Remove-AppxPackage
+
 Unblock-File $location\provision2.ps1
 New-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce MyKey -propertytype String -value "Powershell -NoExit $location\provision2.ps1"
 Restart-Computer
