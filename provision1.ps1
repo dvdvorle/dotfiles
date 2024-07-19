@@ -1,8 +1,5 @@
 #Requires -RunAsAdministrator
 
-echo "Setting the TNS_ADMIN variable"
-[System.Environment]::SetEnvironmentVariable('TNS_ADMIN','V:\',[System.EnvironmentVariableTarget]::Machine)
-
 echo "Install software using chocolatey"
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 

@@ -2,7 +2,7 @@
 
 Installeert en configureert
 - Visual Studio met de juiste loadout om Socrates te kunnen ontwikkelen
-- WSL2 met Ubuntu 20.04
+- WSL2 met Ubuntu 22.04
 - gVim als editor
 - Chrome
 
