@@ -5,11 +5,8 @@
 umount /mnt/c
 mount -t drvfs C: /mnt/c -o metadata
 
-umount /mnt/d
-mount -t drvfs D: /mnt/d -o metadata
-
 # Configure GCM
-git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe"
+git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 
 # Install Azure CLI
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash
@@ -34,8 +31,21 @@ az aks install-cli
 rm -rf ~/.azure
 
 # Install dotnet
-wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+# First set correct apt preferences, source: https://learn.microsoft.com/en-us/dotnet/core/install/linux-package-mixup?pivots=os-linux-ubuntu#i-need-a-version-of-net-that-isnt-provided-by-my-linux-distribution
+sudo apt remove 'dotnet*' 'aspnet*' 'netstandard*'
+touch /etc/apt/preferences
+sudo cat << EOF >> /etc/apt/preferences
+Package: dotnet* aspnet* netstandard*
+Pin: origin "archive.ubuntu.com"
+Pin-Priority: -10
+
+Package: dotnet* aspnet* netstandard*
+Pin: origin "security.ubuntu.com"
+Pin-Priority: -10
+EOF
+
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 
-apt-get install -y dotnet-sdk-3.1 dotnet-sdk-5.0
+apt-get install -y dotnet-sdk-8.0
