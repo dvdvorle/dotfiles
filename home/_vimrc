@@ -171,14 +171,14 @@
   cmap w!! w !sudo tee % >/dev/null
 
   " ctrl is too hard to reach
-  nmap <leader>v :Ve!<CR>
+  nmap <leader>v :Ve<CR>
   nmap <leader>s :Se<CR>
 
   " Specifically search buffers
   nnoremap <leader>p :CtrlPBuffer<CR>
 
   " Several terminals
-  let bash_term = !has('win32') && !has('win64') ? 'bash' : 'wsl -d Ubuntu-20.04'
+  let bash_term = !has('win32') && !has('win64') ? 'bash' : 'wsl -d Ubuntu'
   execute 'nmap <leader>b :term ++close ' . bash_term . '<CR>'
   nmap <leader>tb :term ++close "C:/Program Files/Git/bin/bash.exe"<CR>
   execute 'nmap <leader>tu :vert term ++close ' . bash_term . '<CR>'
