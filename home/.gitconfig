@@ -4,7 +4,9 @@
 
 [alias]
     st = status
+    br = branch
     co = checkout
+    cob = !git checkout $(git branch | grep -v "^\\*" | fzf --height=20% --reverse --info=inline)
     cam = commit -a -m
     cleanup = clean -xe **/appsettings.*.json
     fix = !git commit -a --amend --no-edit && git push --force-with-lease
@@ -12,15 +14,17 @@
 [merge]
     tool = kdiff3
 
-#[diff]
-    #tool = kdiff3
-
 [mergetool "kdiff3"]
     path = "C:/Program Files/KDiff3/kdiff3.exe"
 
-#[difftool "kdiff3"]
-    #path = "C:/Program Files/KDiff3/kdiff3.exe"
 [fetch]
 	prune = true
+
 [http]
 	sslBackend = schannel
+
+[push]
+  autoSetupRemote = true
+
+[core]
+ autocrlf = false
