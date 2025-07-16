@@ -108,7 +108,9 @@
 
 " Shell {
   if executable('rg')
-    set grepprg=rg\ -H\ --no-heading\ --vimgrep\ --hidden
+    command! -nargs=+ GitRg execute 'lcd ' . substitute(system('git rev-parse --show-toplevel'), '\n', '', '') | execute 'lgrep <args>' | copen
+
+    set grepprg=rg\ -H\ --no-heading\ --vimgrep\ -i
     set grepformat=%f:%l:%c:%m
   endif
 " }
@@ -186,6 +188,7 @@
 
   "search repo
   nmap <leader>f :silent lgrep<space>
+  nmap <leader>g :silent lgrep! <cword><CR>:lopen<CR>
 
   tmap <C-V> <C-W>"+
   tmap <C-j> <C-W>j
@@ -266,6 +269,7 @@
   if has('gui_running')
     set guioptions-=T " remove the toolbar
     set guioptions-=m " remove the menu
+    set guioptions+=! "Use internal terminal to run external scripts
   endif
 " }
 
