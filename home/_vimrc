@@ -72,7 +72,7 @@
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
   endif
 
-  set guifont=Consolas            " Set font
+  set guifont=Consolas:h10        " Set font
   " set backspace=indent,eol,start " backspace for dummys
   set linespace=0					        " No extra spaces between rows
   set nu							            " Line numbers on
