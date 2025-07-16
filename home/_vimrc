@@ -214,6 +214,7 @@
     nmap <leader>rr <Plug>SlimeLineSend
     let g:slime_target="vimterminal"
     let g:slime_bracketed_paste = 1
+    let g:slime_python_ipython = 1
   " }
 
   " Ctags {
