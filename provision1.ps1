@@ -15,7 +15,7 @@ echo "Installing WSL2 - part 1"
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
-echo "Enabling Windows containers" 
+echo "Enabling Windows containers"
 Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All -NoRestart
 
 echo "Applying personal customisation"
@@ -30,3 +30,6 @@ Get-AppxPackage *WebExperience* | Remove-AppxPackage
 Unblock-File $location\provision2.ps1
 New-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce MyKey -propertytype String -value "Powershell -NoExit $location\provision2.ps1"
 Restart-Computer
+
+setx SQLPATH "$env:userprofile/sql"
+
