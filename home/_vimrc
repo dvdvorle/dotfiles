@@ -15,6 +15,8 @@
       set term=$TERM                  " Make arrow and other keys work
   endif
 
+  let g:python_recommended_style = 0
+  let g:markdown_recommended_style = 0
   filetype plugin indent on " Automatically detect file types.
   syntax on                 " syntax highlighting
   set mouse=a					      " automatically enable mouse usage
@@ -101,9 +103,10 @@
   set tabstop=2                    " an indentation every two columns
   set softtabstop=2                " let backspace delete indent
   set pastetoggle=<F12>            " pastetoggle (sane indentation on pastes)
-  set comments=sl:/*,mb:*,elx:*/   " auto format comment blocks " Remove trailing whitespaces and ^M chars
+  set comments=sl:/*,mb:*,elx:*/   " auto format comment blocks
 
-  au FileType c,cpp,java,php,js,python,twig,xml,yml au BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+  " Remove trailing whitespaces and ^M chars
+  au FileType c,cpp,cs,java,php,js,md,python,ps1,sh,tf,twig,xml,yml au BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 " }
 
 " Shell {
@@ -120,6 +123,7 @@
   let mapleader = ','
   " Skip a redundant shift
   nnoremap ; :
+  vnoremap ; :
   " <ESC> insert mode from the comfort of home row :-) while having a no-op in normal mode
   imap kj <esc>
 
@@ -204,14 +208,19 @@
 
   " https://vi.stackexchange.com/a/22505/36906
   nnoremap gx :!start <cWORD><CR><CR>
+
+  nmap <leader>n /\d\+<CR>ygn<leader>/
 " }
 
 " Plugins {
   " vim-slime {
     let g:slime_no_mappings = 1
-    xmap <leader>r <Plug>SlimeRegionSend
-    nmap <leader>r <Plug>SlimeMotionSend
-    nmap <leader>rr <Plug>SlimeLineSend
+    xmap <CR> <Plug>SlimeRegionSend
+    nmap <CR> <Plug>SlimeMotionSend
+    nmap <S-CR> <Plug>SlimeLineSend
+    nmap <C-CR> <CR>ip
+    nmap <C-S-CR> :'s,'eSlimeSend<CR>
+
     let g:slime_target="vimterminal"
     let g:slime_bracketed_paste = 1
     let g:slime_python_ipython = 1
@@ -279,7 +288,10 @@
   if has('gui_running')
     set guioptions-=T " remove the toolbar
     set guioptions-=m " remove the menu
-    set guioptions+=! "Use internal terminal to run external scripts
+    set guioptions+=! " Use internal terminal to run external scripts
+    set guioptions+=k " don't resize window on font change
+    set guioptions-=r " remove right scroll bar
+    set guioptions-=L " remove left scroll bar
   endif
 " }
 
