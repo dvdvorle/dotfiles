@@ -214,8 +214,9 @@
   nmap <leader>u :w<CR>:term ++close pwsh -NoProfile -Command "cd ..; Invoke-Pester -Output Detailed; read-host"<CR>
 
   "search repo
-  nmap <leader>f :silent lgrep<space>
-  nmap <leader>g :silent lgrep! <cword><CR>:lopen<CR>
+  nmap <leader>a :Files ~/src/<CR>
+  nmap <leader>f :GFiles<CR>
+  nmap <leader>g :Rg<CR>
 
   tmap <C-V> <C-W>"+
   tmap <C-j> <C-W>j
@@ -257,7 +258,7 @@
   " }
 
   " Ctrl-P {
-    let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files -oc --exclude-standard']
+    let g:ctrlp_user_command = ['.git/', 'git ls-files -oc --exclude-standard %s']
 
     if executable('rg')
       " Use rg in CtrlP for listing files, respects .gitignore
@@ -294,9 +295,10 @@
     let g:NERDTreeNodeDelimiter = "\u00a0"
   " }
 
-  "NETRW {
+  "NETRW / Vinegar {
     let ghregex='\(^\|\s\s\)\zs\.\S\+'
     let g:netrw_list_hide=ghregex
+    nmap <C-_> <Plug>VinegarUp
   " }
 
   "easy align {
@@ -350,6 +352,15 @@ function! InitializeDirectories()
 endfunction
 call InitializeDirectories() 
 " }
+
+  " Fzf {
+    nmap - :Files<CR>
+
+    let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-x': 'vsplit' }
+  " }
 
   " vim-devicons {
     " https://github.com/ryanoasis/vim-devicons/issues/452
