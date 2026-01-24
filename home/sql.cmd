@@ -1,6 +1,9 @@
 @echo off
-REM Wrapper for sqlcl from vscode
+REM Wrapper for dockerized sqlcl
 
 setlocal 
-c:/Users/VorleD/.vscode/extensions/oracle.sql-developer-25.2.2-win32-x64/dbtools/jdk/bin/java.exe --add-modules jakarta.ws.rs,jakarta.annotation,jakarta.inject,jakarta.xml.bind -Djava.awt.headless=true -p c:/Users/VorleD/.vscode/extensions/oracle.sql-developer-25.2.2-win32-x64/dbtools/lib/modules;c:/Users/VorleD/.vscode/extensions/oracle.sql-developer-25.2.2-win32-x64/dbtools/sqlcl/lib/modules --add-opens java.prefs/java.util.prefs=oracle.dbtools.common --add-opens org.eclipse.parsson/org.eclipse.parsson=orajsoda -m com.oracle.dbtools.app/com.oracle.dbtools.app.DatabaseToolsApplication sql -nolog
+c:/Users/VorleD/.vscode/extensions/oracle.sql-developer-25.3.0-win32-x64/dbtools/jdk/bin/java.exe -Djava.awt.headless=true -Duser.language=en -p c:/Users/VorleD/.vscode/extensions/oracle.sql-developer-25.3.0-win32-x64/dbtools/launch;c:/Users/VorleD/.vscode/extensions/oracle.sql-developer-25.3.0-win32-x64/dbtools/sqlcl/launch --add-modules ALL-DEFAULT --add-opens java.prefs/java.util.prefs=oracle.dbtools.win32 --add-opens jdk.security.auth/com.sun.security.auth.module=oracle.dbtools.win32 -m com.oracle.dbtools.launch sql -nolog
 endlocal
+
+
+
