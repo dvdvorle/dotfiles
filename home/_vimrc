@@ -386,6 +386,10 @@ endfunction
 call InitializeDirectories() 
 " }
 
+  " Copilot {
+    let g:copilot_settings = #{selectedCompletionModel: 'claude-3.5-sonnet' }
+  " }
+
   " Fzf {
     nmap - :Files<CR>
 
