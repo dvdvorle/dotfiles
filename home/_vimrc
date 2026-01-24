@@ -316,7 +316,35 @@
     " Format markdown table
     au FileType markdown nmap <leader><bslash> gaip*<bar><CR>
   " }
-" }
+
+  "C# {
+    function! Csharpfmt()
+      " Save the view.
+      let curw = winsaveview()
+
+      " Make a fake change so that the undo point is right.
+      normal! ix
+      normal! "_x
+      " Execute `dotnet csharpier format .`, redirecting stderr to a temporary file.
+      let tmpfile = tempname()
+      let shellredir_save = &shellredir
+      let &shellredir = '>%s 2>'.tmpfile
+      silent execute '%!dotnet csharpier format'
+
+
+      if v:shell_error != 0
+        silent undo
+        let output = readfile(tmpfile)
+        echo join(output, "\n")
+      endif
+
+      " Delete the temporary file, and restore the view.
+      call delete(tmpfile)
+      call winrestview(curw)
+    endfunction
+
+    "nmap <leader>tf :call Csharpfmt()<CR>
+  " }
 
 " GUI Settings {
   if has('gui_running')
