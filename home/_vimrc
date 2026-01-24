@@ -74,7 +74,7 @@
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
   endif
 
-  set guifont=Consolas:h10        " Set font
+  set guifont=Consolas\ Nerd\ Font\ Mono:h10      " Set font
   " set backspace=indent,eol,start " backspace for dummys
   set linespace=0					        " No extra spaces between rows
   set nu							            " Line numbers on
@@ -257,6 +257,10 @@
     endif
 
     let g:startify_files_number = 20
+
+    function! StartifyEntryFormat()
+        return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+    endfunction
   " } 
 
   "Terraform {
@@ -323,6 +327,21 @@ function! InitializeDirectories()
 endfunction
 call InitializeDirectories() 
 " }
+
+  " vim-devicons {
+    " https://github.com/ryanoasis/vim-devicons/issues/452
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+    let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex']    = ''  " nf-seti-tex
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cs']     = '󰌛'  " nf-md-language_csharp
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['r']      = '󰟔'  " nf-md-language_r
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rproj']  = '󰗆'  " nf-md-vector_rectangle
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sol']    = '󰡪'  " nf-md-ethereum
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pem']    = '󰌋'  " nf-md-key_variant
+
+    let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
+    let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['robots.txt'] = '󰋚'  " nf-md-history
+  " }
 
 " Use local vimrc if available {
   if filereadable(expand("~/.vimrc.local"))
