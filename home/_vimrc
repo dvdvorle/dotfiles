@@ -419,3 +419,7 @@ call InitializeDirectories()
     source ~/.vimrc.local
   endif
 " }
+
+  " Arg wrap {
+    nnoremap <silent> <leader>a :ArgWrap<CR>
+  " }
