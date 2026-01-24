@@ -423,3 +423,9 @@ call InitializeDirectories()
   " Arg wrap {
     nnoremap <silent> <leader>a :ArgWrap<CR>
   " }
+
+
+" Templates
+  au BufNewFile *.3d.py 0r ~/.vim/templates/skeleton.3d.py
+" }
+
