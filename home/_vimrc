@@ -272,11 +272,16 @@
 
   " Startify {
     if !has('win32') && !has('win64') && has($TERM)
-      let g:startify_bookmarks = [ 
-        \{ 's1': 'e:/src/'},
-      \]
     else
       let g:startify_bookmarks = [ 
+        \{ 'soc': '$HOME/src/socrates/renovate.json'},
+        \{ 'infra': '$HOME/src/financien.infra/README.md'},
+        \{ 'gmu': '$HOME/src/gmu/'},
+        \{ 'ss': '$HOME/src/selfservice/'},
+        \{ 'db': '$HOME/src/socrates.database/'},
+        \{ 'ddb': '$HOME/src/socrates.database.docker/'},
+        \{ 'ww': '$HOME/src/ikv.wegwijzer/'},
+        \{ '3d': '$HOME/src/my/threed/'},
       \]
     endif
 
